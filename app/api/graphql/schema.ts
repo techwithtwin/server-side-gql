@@ -1,29 +1,31 @@
 const schema = `#graphql
 
-    interface Character {
-        name: String!
-        outfit: String!
-        strengthStat: Int!
+    type UserStatus {
+        ACTIVE
+        DEACTIVATED
+    }
+    type User {
+        id: ID!
+        username: String!
+        profile: Profile!
+        status: UserStatus!
     }
 
-    type Person implements Character {
-        name: String!   
-        outfit: String!
-        strengthStat: Int!
+    type Profile {
+        id: ID!
+        firstName: String!
+        lastName: String!
+        school: String!
+        age: Int!
+        oldEmail: String! @deprecated(reason: "No More")
+        email: String!
+        IsMarried: Boolean!
+        address: String!
 
-        backgroundStory: String!
-    }
-    type Alien implements Character {
-        name: String!
-        outfit: String!
-        strengthStat: Int!
-
-        homeWorld: String!
     }
 
     type Query {
-        me: Person!
-        characters: [Character!]!
+        me: User!
     }
 
 `
