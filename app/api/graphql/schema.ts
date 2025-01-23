@@ -1,33 +1,21 @@
 const schema = `#graphql
-
-    type UserStatus {
-        ACTIVE
-        DEACTIVATED
+    type Animal {
+        species: String!
+        name: String!
     }
-    type User {
+    type Person {
+        name: String!
         id: ID!
-        username: String!
-        profile: Profile!
-        status: UserStatus!
+        pets: [Animal]!
     }
 
-    type Profile {
-        id: ID!
-        firstName: String!
-        lastName: String!
-        school: String!
-        age: Int!
-        oldEmail: String! @deprecated(reason: "No More")
-        email: String!
-        IsMarried: Boolean!
-        address: String!
-
-    }
+    union SearchType = Animal | Person
 
     type Query {
-        me: User!
+        me: String!
+        people: [Person!]!
+        search: [SearchType]!
     }
-
 `
 
 export default schema
